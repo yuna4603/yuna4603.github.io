@@ -178,7 +178,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-06-05 11:20:27 / 修改时间：17:32:17" itemprop="dateCreated datePublished" datetime="2021-06-05T11:20:27+08:00">2021-06-05</time>
+              <time title="创建时间：2021-06-05 11:20:27 / 修改时间：17:52:40" itemprop="dateCreated datePublished" datetime="2021-06-05T11:20:27+08:00">2021-06-05</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -298,6 +298,8 @@
 </li>
 <li><p>执行git clone</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure></li>
+<li><p>上面的形式部署到github后，无法获取到下面设置的主题，所以用下面的形式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">进入到blog的根目录下，该目录下会有themes目录</span><br><span class="line">在根目录下创建新目录</span><br><span class="line">mkdir themes/next</span><br><span class="line">curl -s https://api.github.com/repos/theme-next/hexo-theme-next/releases/latest | grep tarball_url | cut -d &#x27;&quot;&#x27; -f 4 | wget -i - -O- | tar -zx -C themes/next --strip-components=1</span><br><span class="line">这种安装方式没有办法通过git更新最新版本</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 <li><p>将blog的主题设置为next</p>
