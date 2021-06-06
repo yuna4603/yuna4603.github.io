@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="如果你刚入职对项目不了解&#x2F;环境不了解，或者遇到了业务调整，又或者与其他服务有交集，需要快速了解陌生项目，并且又想尽量自己搞定这些。希望这篇文章能对你有用 找到请求的接口App：charles抓包 Web：Network查看XHR请求接口 找到nginx配置通过Nginx配置找到nginx配置文件:【前提：知道nginx在哪个服务器】  登录跳板机  查看nginx配置地址：whereis ngin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何快速入手一个新项目">
+<meta property="og:url" content="http://example.com/2021/06/05/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%85%A5%E6%89%8B%E4%B8%80%E4%B8%AA%E6%96%B0%E9%A1%B9%E7%9B%AE/index.html">
+<meta property="og:site_name" content="手撕の面包">
+<meta property="og:description" content="如果你刚入职对项目不了解&#x2F;环境不了解，或者遇到了业务调整，又或者与其他服务有交集，需要快速了解陌生项目，并且又想尽量自己搞定这些。希望这篇文章能对你有用 找到请求的接口App：charles抓包 Web：Network查看XHR请求接口 找到nginx配置通过Nginx配置找到nginx配置文件:【前提：知道nginx在哪个服务器】  登录跳板机  查看nginx配置地址：whereis ngin">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/yuna4603/git-img/master/Snipaste_2021-06-06_12-16-53.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yuna4603/git-img/master/Snipaste_2021-06-06_13-00-17.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yuna4603/git-img/master/Snipaste_2021-06-06_13-14-57.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yuna4603/git-img/master/Snipaste_2021-06-06_13-24-25.png">
+<meta property="article:published_time" content="2021-06-05T10:55:47.000Z">
+<meta property="article:modified_time" content="2021-06-06T05:30:42.359Z">
+<meta property="article:author" content="初见">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/yuna4603/git-img/master/Snipaste_2021-06-06_12-16-53.png">
+
+<link rel="canonical" href="http://example.com/2021/06/05/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%85%A5%E6%89%8B%E4%B8%80%E4%B8%AA%E6%96%B0%E9%A1%B9%E7%9B%AE/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>如何快速入手一个新项目 | 手撕の面包</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">手撕の面包</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">撕出的柔软香甜-层层环绕</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/05/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%85%A5%E6%89%8B%E4%B8%80%E4%B8%AA%E6%96%B0%E9%A1%B9%E7%9B%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="初见">
+      <meta itemprop="description" content="直到这一刻微笑着说话为止，我至少留下了一公升眼泪">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="手撕の面包">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          如何快速入手一个新项目
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-05 18:55:47" itemprop="dateCreated datePublished" datetime="2021-06-05T18:55:47+08:00">2021-06-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-06-06 13:30:42" itemprop="dateModified" datetime="2021-06-06T13:30:42+08:00">2021-06-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B5%8B%E8%AF%95%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">测试工作流程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>如果你刚入职对项目不了解/环境不了解，或者遇到了业务调整，又或者与其他服务有交集，需要快速了解陌生项目，并且又想尽量自己搞定这些。希望这篇文章能对你有用</p>
+<h3 id="找到请求的接口"><a href="#找到请求的接口" class="headerlink" title="找到请求的接口"></a>找到请求的接口</h3><h4 id="App：charles抓包"><a href="#App：charles抓包" class="headerlink" title="App：charles抓包"></a>App：charles抓包</h4><p><img src="https://raw.githubusercontent.com/yuna4603/git-img/master/Snipaste_2021-06-06_12-16-53.png"></p>
+<h4 id="Web：Network查看XHR请求接口"><a href="#Web：Network查看XHR请求接口" class="headerlink" title="Web：Network查看XHR请求接口"></a>Web：Network查看XHR请求接口</h4><p><img src="https://raw.githubusercontent.com/yuna4603/git-img/master/Snipaste_2021-06-06_13-00-17.png"></p>
+<h3 id="找到nginx配置"><a href="#找到nginx配置" class="headerlink" title="找到nginx配置"></a>找到nginx配置</h3><h4 id="通过Nginx配置"><a href="#通过Nginx配置" class="headerlink" title="通过Nginx配置"></a>通过Nginx配置</h4><p>找到nginx配置文件:【前提：知道nginx在哪个服务器】</p>
+<ul>
+<li><p>登录跳板机</p>
+</li>
+<li><p>查看nginx配置地址：whereis nginx ；/etc/nginx的nginx.conf文件</p>
+<p><img src="https://raw.githubusercontent.com/yuna4603/git-img/master/Snipaste_2021-06-06_13-14-57.png"></p>
+</li>
+<li><p>查看nginx配置详情：进入到id文件夹查看conf文件，一般文件命名与server_name相同</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">location /api &#123;</span><br><span class="line">    proxy_pass http://***;</span><br><span class="line">&#125;</span><br><span class="line">location /checkout-counter &#123;</span><br><span class="line">    proxy_pass http://***;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​        kubectl get service -n *** | grep 30870 查到该端口对应的服务是你要查找的服务</p>
+<p>​        或者在rancher网站上查找对应的服务、端口。</p>
+<p>​        此时已经找到了抓包接口对应的服务。</p>
+</li>
+</ul>
+<h4 id="通过Ingress配置"><a href="#通过Ingress配置" class="headerlink" title="通过Ingress配置"></a>通过Ingress配置</h4><h3 id="下载对应服务代码"><a href="#下载对应服务代码" class="headerlink" title="下载对应服务代码"></a>下载对应服务代码</h3><p>Gitlab上下载对应的服务代码</p>
+<p>application.yml文件中 <a target="_blank" rel="noopener" href="http://spring.application.name/">spring.application.name</a> 为服务名</p>
+<p><img src="https://raw.githubusercontent.com/yuna4603/git-img/master/Snipaste_2021-06-06_13-24-25.png"></p>
+<h3 id="查找对应接口及逻辑"><a href="#查找对应接口及逻辑" class="headerlink" title="查找对应接口及逻辑"></a>查找对应接口及逻辑</h3><h3 id="查看配置文件"><a href="#查看配置文件" class="headerlink" title="查看配置文件"></a>查看配置文件</h3><h4 id="根目录的application-yml文件配置"><a href="#根目录的application-yml文件配置" class="headerlink" title="根目录的application.yml文件配置"></a>根目录的application.yml文件配置</h4><h4 id="外部文件配置，nacos配置"><a href="#外部文件配置，nacos配置" class="headerlink" title="外部文件配置，nacos配置"></a>外部文件配置，nacos配置</h4><h4 id="Rancher–-gt-Config-配置"><a href="#Rancher–-gt-Config-配置" class="headerlink" title="Rancher–&gt;Config 配置"></a>Rancher–&gt;Config 配置</h4><h3 id="异步mq监听"><a href="#异步mq监听" class="headerlink" title="异步mq监听"></a>异步mq监听</h3>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/06/05/Hexo-github-%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84blog/" rel="prev" title="Hexo+github 创建自己的blog">
+      <i class="fa fa-chevron-left"></i> Hexo+github 创建自己的blog
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/06/05/Hexo%E8%B8%A9%E5%9D%91%E5%90%88%E9%9B%86/" rel="next" title="Hexo踩坑合集">
+      Hexo踩坑合集 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%BE%E5%88%B0%E8%AF%B7%E6%B1%82%E7%9A%84%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.</span> <span class="nav-text">找到请求的接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#App%EF%BC%9Acharles%E6%8A%93%E5%8C%85"><span class="nav-number">1.1.</span> <span class="nav-text">App：charles抓包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Web%EF%BC%9ANetwork%E6%9F%A5%E7%9C%8BXHR%E8%AF%B7%E6%B1%82%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.2.</span> <span class="nav-text">Web：Network查看XHR请求接口</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%BE%E5%88%B0nginx%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">找到nginx配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%9A%E8%BF%87Nginx%E9%85%8D%E7%BD%AE"><span class="nav-number">2.1.</span> <span class="nav-text">通过Nginx配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%9A%E8%BF%87Ingress%E9%85%8D%E7%BD%AE"><span class="nav-number">2.2.</span> <span class="nav-text">通过Ingress配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%AF%B9%E5%BA%94%E6%9C%8D%E5%8A%A1%E4%BB%A3%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">下载对应服务代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE%E5%AF%B9%E5%BA%94%E6%8E%A5%E5%8F%A3%E5%8F%8A%E9%80%BB%E8%BE%91"><span class="nav-number">4.</span> <span class="nav-text">查找对应接口及逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">5.</span> <span class="nav-text">查看配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B9%E7%9B%AE%E5%BD%95%E7%9A%84application-yml%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE"><span class="nav-number">5.1.</span> <span class="nav-text">根目录的application.yml文件配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%96%E9%83%A8%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE%EF%BC%8Cnacos%E9%85%8D%E7%BD%AE"><span class="nav-number">5.2.</span> <span class="nav-text">外部文件配置，nacos配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Rancher%E2%80%93-gt-Config-%E9%85%8D%E7%BD%AE"><span class="nav-number">5.3.</span> <span class="nav-text">Rancher–&gt;Config 配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%82%E6%AD%A5mq%E7%9B%91%E5%90%AC"><span class="nav-number">6.</span> <span class="nav-text">异步mq监听</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">初见</p>
+  <div class="site-description" itemprop="description">直到这一刻微笑着说话为止，我至少留下了一公升眼泪</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">初见</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
