@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="网址URL中特殊字符转义编码字符   -   URL编码值 空格   -   %20“      -   %22#     -   %23%     -   %25&amp;     -   %26(      -   %28)      -   %29+     -   %2B,      -   %2C&#x2F;      -   %2F-   %3A;      -   %3B&lt;     -">
+  <meta name="description" content="Base64是一种用64个字符来表示任意二进制数据的方法。 base64是什么网络上传输的字符并不全是可打印的字符，比如二进制文件、图片等。Base64的出现就是为了解决此问题，它是基于64个可打印的字符来表示二进制的数据的一种方法 原理网上很多大神都有解释，这里就不班门弄斧啦。传送门 base64 python实现以下借鉴自廖大神 Python内置的base64可以直接进行base64的编解码">
 <meta property="og:type" content="article">
-<meta property="og:title" content="网址URL中特殊字符转义编码">
-<meta property="og:url" content="http://example.com/2021/06/06/%E7%BD%91%E5%9D%80URL%E4%B8%AD%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6%E8%BD%AC%E4%B9%89%E7%BC%96%E7%A0%81/index.html">
+<meta property="og:title" content="base64编码">
+<meta property="og:url" content="http://example.com/2021/06/14/base64%E7%BC%96%E7%A0%81/index.html">
 <meta property="og:site_name" content="手撕の面包">
-<meta property="og:description" content="网址URL中特殊字符转义编码字符   -   URL编码值 空格   -   %20“      -   %22#     -   %23%     -   %25&amp;     -   %26(      -   %28)      -   %29+     -   %2B,      -   %2C&#x2F;      -   %2F-   %3A;      -   %3B&lt;     -">
+<meta property="og:description" content="Base64是一种用64个字符来表示任意二进制数据的方法。 base64是什么网络上传输的字符并不全是可打印的字符，比如二进制文件、图片等。Base64的出现就是为了解决此问题，它是基于64个可打印的字符来表示二进制的数据的一种方法 原理网上很多大神都有解释，这里就不班门弄斧啦。传送门 base64 python实现以下借鉴自廖大神 Python内置的base64可以直接进行base64的编解码">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-06-06T05:32:21.000Z">
-<meta property="article:modified_time" content="2021-06-06T05:36:46.060Z">
+<meta property="article:published_time" content="2021-06-14T06:23:35.000Z">
+<meta property="article:modified_time" content="2021-06-14T06:52:08.986Z">
 <meta property="article:author" content="初见">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2021/06/06/%E7%BD%91%E5%9D%80URL%E4%B8%AD%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6%E8%BD%AC%E4%B9%89%E7%BC%96%E7%A0%81/">
+<link rel="canonical" href="http://example.com/2021/06/14/base64%E7%BC%96%E7%A0%81/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>网址URL中特殊字符转义编码 | 手撕の面包</title>
+  <title>base64编码 | 手撕の面包</title>
   
 
 
@@ -156,7 +156,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/06/%E7%BD%91%E5%9D%80URL%E4%B8%AD%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6%E8%BD%AC%E4%B9%89%E7%BC%96%E7%A0%81/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/14/base64%E7%BC%96%E7%A0%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -169,7 +169,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          网址URL中特殊字符转义编码
+          base64编码
         </h1>
 
         <div class="post-meta">
@@ -180,7 +180,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-06-06 13:32:21 / 修改时间：13:36:46" itemprop="dateCreated datePublished" datetime="2021-06-06T13:32:21+08:00">2021-06-06</time>
+              <time title="创建时间：2021-06-14 14:23:35 / 修改时间：14:52:08" itemprop="dateCreated datePublished" datetime="2021-06-14T14:23:35+08:00">2021-06-14</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -203,8 +203,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="网址URL中特殊字符转义编码"><a href="#网址URL中特殊字符转义编码" class="headerlink" title="网址URL中特殊字符转义编码"></a>网址URL中特殊字符转义编码</h3><p>字符   -   URL编码值</p>
-<dl><dt>空格   -   %20<br>“      -   %22<br>#     -   %23<br>%     -   %25<br>&amp;     -   %26<br>(      -   %28<br>)      -   %29<br>+     -   %2B<br>,      -   %2C<br>/      -   %2F</dt><dd>-   %3A<br>;      -   %3B<br>&lt;     -   %3C<br>=     -   %3D<br>&gt;     -   %3E<br>?     -   %3F<br>@    -   %40<br>\      -   %5C<br>|      -   %7C </dd></dl>
+        <p>Base64是一种用64个字符来表示任意二进制数据的方法。</p>
+<h3 id="base64是什么"><a href="#base64是什么" class="headerlink" title="base64是什么"></a>base64是什么</h3><p>网络上传输的字符并不全是可打印的字符，比如二进制文件、图片等。Base64的出现就是为了解决此问题，它是基于64个可打印的字符来表示二进制的数据的一种方法</p>
+<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>网上很多大神都有解释，这里就不班门弄斧啦。<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2008/06/base64.html">传送门</a></p>
+<h3 id="base64-python实现"><a href="#base64-python实现" class="headerlink" title="base64 python实现"></a>base64 python实现</h3><p>以下借鉴自<a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/897692888725344/949441536192576">廖大神</a></p>
+<p>Python内置的<code>base64</code>可以直接进行base64的编解码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">temp = base64.b64encode(&#x27;ssl&#x27;.encode())</span><br><span class="line">print(temp)</span><br><span class="line">print(base64.b64decode(temp))</span><br><span class="line">打印结果：</span><br><span class="line">b&#x27;c3Ns&#x27;</span><br><span class="line">b&#x27;ssl&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>由于标准的Base64编码后可能出现字符<code>+</code>和<code>/</code>，在URL中就不能直接作为参数，所以又有一种”url safe”的base64编码，其实就是把字符<code>+</code>和<code>/</code>分别变成<code>-</code>和<code>_</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def test_de():</span><br><span class="line">    print(base64.b64encode(b&#x27;i\xb7\x1d\xfb\xef\xff&#x27;))</span><br><span class="line">    print(base64.urlsafe_b64encode(b&#x27;i\xb7\x1d\xfb\xef\xff&#x27;))</span><br><span class="line">    print(base64.urlsafe_b64decode(&#x27;abcd--__&#x27;))</span><br><span class="line">打印结果：</span><br><span class="line">b&#x27;abcd++//&#x27;</span><br><span class="line">b&#x27;abcd--__&#x27;</span><br><span class="line">b&#x27;i\xb7\x1d\xfb\xef\xff&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>由于<code>=</code>字符也可能出现在Base64编码中，但<code>=</code>用在URL、Cookie里面会造成歧义，所以，很多Base64编码后会把<code>=</code>去掉</p>
+<p>去掉<code>=</code>后怎么解码呢？因为Base64是把3个字节变为4个字节，所以，Base64编码的长度永远是4的倍数，因此，需要加上<code>=</code>把Base64字符串的长度变为4的倍数，就可以正常解码了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; base64.b64decode(&#x27;YWJjZA==&#x27;)</span><br><span class="line">&#x27;abcd&#x27;</span><br><span class="line">&gt;&gt;&gt; base64.b64decode(&#x27;YWJjZA&#x27;)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  ...</span><br><span class="line">TypeError: Incorrect padding</span><br><span class="line">&gt;&gt;&gt; safe_b64decode(&#x27;YWJjZA&#x27;)</span><br><span class="line">&#x27;abcd&#x27;</span><br></pre></td></tr></table></figure>
+
+
     </div>
 
     
@@ -219,12 +232,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/06/06/flask%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/" rel="prev" title="flask基本用法">
-      <i class="fa fa-chevron-left"></i> flask基本用法
+    <a href="/2021/06/14/%E7%BC%96%E7%A0%81%E5%92%8C%E8%A7%A3%E7%A0%81/" rel="prev" title="编码和解码">
+      <i class="fa fa-chevron-left"></i> 编码和解码
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/06/14/%E7%BC%96%E7%A0%81%E5%92%8C%E8%A7%A3%E7%A0%81/" rel="next" title="编码和解码">
-      编码和解码 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/06/14/AES%E5%8A%A0%E5%AF%86/" rel="next" title="AES加密">
+      AES加密 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -284,7 +297,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E5%9D%80URL%E4%B8%AD%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6%E8%BD%AC%E4%B9%89%E7%BC%96%E7%A0%81"><span class="nav-number">1.</span> <span class="nav-text">网址URL中特殊字符转义编码</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#base64%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.</span> <span class="nav-text">base64是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-number">1.1.</span> <span class="nav-text">原理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#base64-python%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.</span> <span class="nav-text">base64 python实现</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
